@@ -4,7 +4,7 @@ import random, sys, os, time
 print('''
 🌟Top Trumps🌟
 
-Welcome to the Top Trumps 'Most Handsome Computing Teachers' Simulator
+Welcome to the Top Trumps 'Most Smart Human Critics' Simulator
 ''')
 
 characterDict={
@@ -35,6 +35,8 @@ characterDict={
 }
 
 character={}
+contendingCharacters={}
+characterCount=int(3)
 
 def prettyPrint():
   print()
@@ -53,13 +55,16 @@ def prettyPrintAll():
       print(f'{subKey}')
   print()
 
+# def prettyPrintContenders():
+#   for key, value in characterDict.items():
+#     if key==userCharacter or key==user2Character:
+    
 # Character selection and creation
 prettyPrint()
 create=input('Do you want to create a new character?\n\n').lower()
 
 # Character creation
 if create=='y' or create=='yes':
-  characterCount=int(3)
   x=0
   while True: 
     print()
@@ -91,7 +96,8 @@ if create=='y' or create=='yes':
 else:
   pass
   
-print('\nInput the number of the character you want to use:')  
+print('\nInput the number of the character you want to use:')
+print()
 while True:
   x=1
   for key,value in characterDict.items():
@@ -102,11 +108,13 @@ print()
 
 # Character selection
 userCharacter=str()
-userCharacterNum=int(input())
-int(userCharacterNum)
-# availableCharacters=len(characterDict)
-# int(availableCharacters)
-
+while True:
+  try:
+    numInput=input()
+    userCharacterNum=int(numInput)
+    break
+  except ValueError:
+    print('Not a number')
 if userCharacterNum>characterCount:
   print(f'No character has the number you selected. Choose a number equal or minor than {characterCount}')
 elif userCharacterNum<1:
@@ -123,21 +131,45 @@ else:
     break
   print()
   print(f"Player 1 selected {userCharacter}\n\n")
-  
+
+# Statistic selection
+print('Choose a statistic to fight:')
+print()
+while True:
+  x=1
+  for key,value in characterDict.items():
+    if key==userCharacter:
+      for subkey,subvalue in value.items():
+        if not subkey=='id':
+          print(f'{x}. {subkey}')
+          x+=1
+        else:
+          continue
+      # print(f'{value[subkey][subvalue]}')
+    else:
+      continue
+  break
+print()
+statistic=input()
+while True
+      
+characterCount=int(characterCount)
+# print(characterCount)
+
 # Game mode selector
-gameMode=input("Press '1' to play against the machine\n Or press '2' to play against another human player...\n\n").lower()
+print()
+gameMode=input("Press '1' to play against the machine\nPress '2' to play against another human player...\n\n").lower()
 if gameMode=='1':
-  machineCharacterNum=random.choice(characterCount)
+  user2CharacterNum=random.randint(1, characterCount)
   while True:
     y=1
     for key,value in characterDict.items():
-      if machineCharacterNum==y:
-        machineCharacter=key
+      if user2CharacterNum==y:
+        user2Character=key
         break
       else:
         y+=1
     break
-  break
 elif gameMode=='2':
   print()
   while True:
@@ -167,18 +199,27 @@ elif gameMode=='2':
       continue
     else:
       while True:
-      y=1
-      for key,value in characterDict.items():
-        if user2CharacterNum==y:
-          user2Character=key
-          break
-        else:
-          y+=1
+        y=1
+        for key,value in characterDict.items():
+          if user2CharacterNum==y:
+            user2Character=key
+            break
+          else:
+            y+=1
       break
       print(f"Player 2: Your character is: {user2Character}")
 else:
   print("That's not an option, try again!")
-  continue
 
-  # Trump
+  # Fight
+print()
+print("Let the fight begin!")
+print()
+print(f"{userCharacter} Vs. {user2Character}")
+for key,value in character.items():
+  if key==userCharacter:
+    contendingCharacters[key]=value
+  else:
+    continue
+print(contendingCharacters)
 
